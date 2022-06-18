@@ -82,11 +82,10 @@ void pall_instruct(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
+	if (!line_number)
+		return;
 	if (*stack == NULL)
-	{
-		dprintf(STDERR_FILENO,"L%d: can't pall, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		return;
 	if ((*stack)->prev == NULL && (*stack)->next == NULL)
 	{
 		printf("%d\n", (*stack)->n);
