@@ -101,3 +101,28 @@ void pall_instruct(stack_t **stack, unsigned int line_number)
 	}
 	printf("%d\n", tmp->n);
 }
+
+/**
+ * pint_instruct - print the first element of stack
+ * @stack: double pointer to stack_t, stack
+ * @line_number: unsigned int; current line
+ *
+ * Return: nothing
+ * TheOwl
+ */
+void pint_instruct(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (line_number < 2)
+		return;
+	if ((*stack)->prev == NULL && (*stack)->next == NULL)
+	{
+		printf("%d\n", (*stack)->n);
+		return;
+	}
+	tmp = *stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	printf("%d\n", tmp->n);
+}
