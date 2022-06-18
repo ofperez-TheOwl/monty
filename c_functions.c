@@ -84,7 +84,7 @@ void pall_instruct(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		dprintf("L%d: can't pall, stack empty\n", line_number);
+		dprintf(STDERR_FILENO,"L%d: can't pall, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->prev == NULL && (*stack)->next == NULL)
@@ -117,7 +117,7 @@ void pint_instruct(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		dprintf("L%d: can't pint, stack empty\n", line_number);
+		dprintf(STDERR_FILENO,"L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->prev == NULL && (*stack)->next == NULL)
