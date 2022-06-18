@@ -55,6 +55,7 @@ instruction_t get_instruction(char *buffer)
 	instruction_t *cmd_list = monty_var.instruct;
 
 	/* extract instruct */
+	printf("l_buffer size is %d\n", j);
 	while (cmd_list[i].opcode != NULL)
 	{
 		l = _strstr(buffer, cmd_list[i].opcode);

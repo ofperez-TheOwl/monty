@@ -25,14 +25,17 @@ int main(int argc, char **argv)
 	l_number = line_number(monty_var.stand_buffer);
 	while (monty_var.cur_line < l_number)
 	{
+		printf("***Start here***\n\n\n");
 		/* read each line */
 		l_buffer = read_lines(monty_var.stand_buffer, l_number);
 		if (l_buffer == NULL)
 			return (EXIT_FAILURE);
+		printf("monty_var.cur_line is %d\n", monty_var.cur_line);
 		/* identify and execute instructions */
 		if (strlen(l_buffer) != 0)
 		{
 			cmd = get_instruction(l_buffer);
+			printf("opcode is %s\n", cmd.opcode);
 			if (cmd.opcode != NULL)
 				cmd.f(monty_var.init_stack, monty_var.cur_line);
 		}

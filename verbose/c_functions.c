@@ -1,30 +1,6 @@
 #include "monty.h"
 
 /**
- * arg_checker - check argument of opcode
- *
- * Return: nothing
- * TheOwl
- */
-void arg_checker(void)
-{
-	int i = 0;
-
-	if (monty_var.cur_arg != NULL)
-	{
-		while (monty_var.cur_arg[i] != '\0')
-		{
-			if (monty_var.cur_arg[i] < '0' || monty_var.cur_arg[i] > '9')
-			{
-				monty_var.cur_arg = NULL;
-				break;
-			}
-			i++;
-		}
-	}
-}
-
-/**
  * push_instruct - pushes an element to the stack
  * @stack: double pointer to stack_t, stack
  * @line_number: unsigned int; current line
@@ -35,6 +11,7 @@ void arg_checker(void)
 void push_instruct(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new, *tmp;
+	int i = 0;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
@@ -44,22 +21,37 @@ void push_instruct(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	/* check if argument is a number */
-	arg_checker();
+	if (monty_var.cur_arg != NULL)
+	{
+		while (monty_var.cur_arg[i] != '\0')
+		{
+			printf("check argument\n");
+			if (monty_var.cur_arg[i] < '0' || monty_var.cur_arg[i] > '9')
+			{
+				monty_var.cur_arg = NULL;
+				break;
+			}
+			i++;
+		}
+	}
 	if (monty_var.cur_arg == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	printf("argument is %s\n", monty_var.cur_arg);
 	/* initialize new node */
 	new->n = atoi(monty_var.cur_arg);
 	new->next = NULL;
 	/* if new is first node */
 	if (*stack == NULL)
 	{
+		printf("first node\n");
 		new->prev = NULL;
 		*stack = new;
 		return;
 	}
+	printf("not first node\n");
 	/* if new is not first node */
 	tmp = *stack;
 	while (tmp->next != NULL)

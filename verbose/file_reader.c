@@ -14,7 +14,7 @@ char *ck_and_rd_file(int argc, char **argv)
 	char *buffer;
 	int buf_size, fd;
 	ssize_t l_read;
-
+	
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
@@ -36,10 +36,12 @@ char *ck_and_rd_file(int argc, char **argv)
 	buffer = malloc((buf_size + 1) * sizeof(char));
 	if (buffer == NULL)
 	{
+		free(buffer);
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		return (NULL);
 	}
-	lseek(fd, 0, SEEK_SET); /* reset offset and read monty file */
+	/* reset offset and read monty file */
+	lseek(fd, 0, SEEK_SET);
 	l_read = read(fd, buffer, buf_size);
 	if (l_read == -1)
 	{
@@ -69,6 +71,7 @@ char *read_lines(char *buffer, int l_number)
 	/* find line size and malloc buffer for it */
 	while (buffer[i] != '\n' && buffer[i] != '\0')
 		i++;
+	printf("i is %d\n", i);
 	l_buffer = malloc((i + 1) * sizeof(char));
 	if (l_buffer == NULL)
 	{
@@ -119,3 +122,4 @@ int line_number(char *buffer)
 	}
 	return (j + 1);
 }
+
