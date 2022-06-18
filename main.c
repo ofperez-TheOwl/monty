@@ -1,74 +1,47 @@
 #include "monty.h"
+#include "abs_var.h"
 
 /**
- * main - entry into interpreter
- * @argc: argc counter
- * @argv: arguments
- * Return: 0 on success
+ * main - entry point of monty
+ * monty interprets and executes monty file given as argument
+ * @argc: int; argument counter
+ * @argv: double pointer to char; argument vector
+ *
+ * Return: int; EXIT_SUCCESS when succes with output to stdout
+ * EXIT_FAILURE when failure with error message to stderr
+ * TheOwl
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	int fd, ispush = 0;
-	unsigned int line = 1;
-	ssize_t n_read;
-	char *buffer, *token;
-	stack_t *h = NULL;
+	char *l_buffer;
+	int l_number;
+	instruction_t cmd;
 
-	if (argc != 2)
+	/* read mounty file */
+	monty_var.stand_buffer = ck_and_rd_file(argc, argv);
+	if (monty_var.stand_buffer == NULL)
+		return (EXIT_FAILURE);
+	/* get number of line */
+	l_number = line_number(monty_var.stand_buffer);
+	while (monty_var.cur_line < l_number)
 	{
-		printf("USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	buffer = malloc(sizeof(char) * 10000);
-	if (!buffer)
-		return (0);
-	n_read = read(fd, buffer, 10000);
-	if (n_read == -1)
-	{
-		free(buffer);
-		close(fd);
-		exit(EXIT_FAILURE);
-	}
-	token = strtok(buffer, "\n\t\a\r ;:");
-	while (token != NULL)
-	{
-		if (ispush == 1)
+		printf("***Start here***\n\n\n");
+		/* read each line */
+		l_buffer = read_lines(monty_var.stand_buffer, l_number);
+		if (l_buffer == NULL)
+			return (EXIT_FAILURE);
+		printf("monty_var.cur_line is %d\n", monty_var.cur_line);
+		/* identify and execute instructions */
+		if (strlen(l_buffer) != 0)
 		{
-			push(&h, line, token);
-			ispush = 0;
-			token = strtok(NULL, "\n\t\a\r ;:");
-			line++;
-			continue;
+			cmd = get_instruction(l_buffer);
+			printf("opcode is %s\n", cmd.opcode);
+			if (cmd.opcode != NULL)
+				cmd.f(monty_var.init_stack, monty_var.cur_line);
 		}
-		else if (strcmp(token, "push") == 0)
-		{
-			ispush = 1;
-			token = strtok(NULL, "\n\t\a\r ;:");
-			continue;
-		}
-		else
-		{
-			if (get_op_func(token) != 0)
-			{
-				get_op_func(token)(&h, line);
-			}
-			else
-			{
-				free_dlist(&h);
-				printf("L%d: unknown instruction %s\n", line, token);
-				exit(EXIT_FAILURE);
-			}
-		}
-		line++;
-		token = strtok(NULL, "\n\t\a\r ;:");
+		free(l_buffer);
 	}
-	free_dlist(&h); free(buffer);
-	close(fd);
-	return (0);
+	free(monty_var.free_buffer);
+	free_dlistint(*monty_var.init_stack);
+	return (EXIT_SUCCESS);
 }
