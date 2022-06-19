@@ -119,13 +119,47 @@ void pint_instruct(stack_t **stack, unsigned int line_number)
 		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	/* if only one node */
 	if ((*stack)->prev == NULL && (*stack)->next == NULL)
 	{
 		printf("%d\n", (*stack)->n);
 		return;
 	}
+	/* traversing before print the top of the stack */
 	tmp = *stack;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	printf("%d\n", tmp->n);
+}
+
+/**
+ * pop_instruct - removes the top element of stack
+ * @stack: double pointer to stack_t, stack
+ * @line_number: unsigned int; current line
+ *
+ * Return: nothing
+ * TheOwl
+ */
+void pop_instruct(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (*stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	/* if only one node */
+	if ((*stack)->prev == NULL && (*stack)->next == NULL)
+	{
+		free(*stack);
+		*stack = NULL;
+		return;
+	}
+	/* traversing and removing the top of the stack */
+	tmp = *stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	(tmp->prev)->next = NULL;
+	free(tmp);
 }
