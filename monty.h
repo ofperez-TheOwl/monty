@@ -74,7 +74,9 @@ char *read_lines(char *buffer, int l_number);
 int line_number(char *buffer);
 instruction_t get_instruction(char *l_buffer);
 
-void free_dlistint(stack_t *head);
-void arg_checker(void);
+/* other functions to optimize the program */
+void free_dlistint(stack_t *head); /* free a doubly linked list */
+void arg_checker(void);/* check if argument is a number */
+stack_t *traverse(stack_t *stack); /* traverse the doubly linked list */
 
 #endif
