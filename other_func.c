@@ -59,7 +59,7 @@ void free_stack(stack_t *head)
 		return;
 	}
 	/* recursive instructions */
-	free_dlistint(head->next);
+	free_stack(head->next);
 	free(head->next);
 	if (head->prev == NULL)
 	{

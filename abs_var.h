@@ -8,6 +8,10 @@ void pint_instruct(stack_t **stack, unsigned int line_number);
 void pop_instruct(stack_t **stack, unsigned int line_number);
 void swap_instruct(stack_t **stack, unsigned int line_number);
 void add_instruct(stack_t **stack, unsigned int line_number);
+void sub_instruct(stack_t **stack, unsigned int line_number);
+void div_instruct(stack_t **stack, unsigned int line_number);
+void mul_instruct(stack_t **stack, unsigned int line_number);
+void mod_instruct(stack_t **stack, unsigned int line_number);
 
 
 /* definition of global variable */
@@ -25,6 +29,10 @@ abs_var monty_var = {
 		{"swap", swap_instruct},
 		{"add", add_instruct},
 		{"nop", NULL},
+		{"sub", sub_instruct},
+		{"div", div_instruct},
+		{"mul", mul_instruct},
+		{"mod", mod_instruct},
 		{NULL, NULL}
 	},
 	&stack_start,
