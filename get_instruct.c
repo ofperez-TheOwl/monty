@@ -34,7 +34,8 @@ instruction_t get_instruction(char *buffer)
 
 	while (buffer[i] == ' ') /* clear first spaces */
 		i++;
-	while (buffer[i + j] != ' ' && buffer[i + j] != '\0') /* get length of opcode */
+	/* get length of opcode */
+	while (buffer[i + j] != ' ' && buffer[i + j] != '\0')
 		j++;
 	/* extract instruct */
 	while (cmd_list[k].opcode != NULL)
@@ -44,7 +45,7 @@ instruction_t get_instruction(char *buffer)
 			/* extract argument*/
 			while (buffer[i + j + m] == ' ') /* clear spaces after opcode */
 				m++;
-			while (buffer[i + j + + m + l] != ' ' && buffer[i + j + m + l] != '\0')
+			while (buffer[i + j + m + l] != ' ' && buffer[i + j + m + l] != '\0')
 				l++;
 			buffer[i + j + m + l] = '\0';
 			if (l != 0)
@@ -53,7 +54,8 @@ instruction_t get_instruction(char *buffer)
 		}
 		k++;
 	}
-	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", monty_var.cur_line, buffer + i);
+	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n",
+			monty_var.cur_line, buffer + i);
 	free(buffer);
 	error_freeing();
 	exit(EXIT_FAILURE);
