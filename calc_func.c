@@ -125,7 +125,7 @@ void mul_instruct(stack_t **stack, unsigned int line_number)
  * Return: Nothing
  * TheOwl
  */
-void div_instruct(stack_t **stack, unsigned int line_number)
+void mod_instruct(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp2, *tmp1;
 

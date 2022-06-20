@@ -1,6 +1,24 @@
 #include "monty.h"
 
 /**
+ * comment_checker - identify comment lines
+ * @buffer: pointer to char; a line of mounty file
+ *
+ * Return: int; 1 if comment line 0 if not
+ * TheOwl
+ */
+int comment_checker(char *buffer)
+{
+	int i = 0;
+
+	while (buffer[i] == ' ' && buffer[i] != '\0')
+		i++;
+	if (buffer[i] == '#')
+		return (1);
+	return (0);
+}
+
+/**
  * _strstr - locate a substring
  * @haystack: pointer to string; string to screen
  * @needle: pointer to string; substring to search for

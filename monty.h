@@ -73,6 +73,7 @@ char *ck_and_rd_file(int argc, char **argv);
 char *read_lines(char *buffer, int l_number);
 int line_number(char *buffer);
 instruction_t get_instruction(char *l_buffer);
+int comment_checker(char *buffer);
 
 /* other functions to optimize the program */
 /* free a doubly linked list */

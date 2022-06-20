@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 		if (l_buffer == NULL)
 			return (EXIT_FAILURE);
 		/* identify and execute instructions */
-		if (strlen(l_buffer) != 0)
+		if (strlen(l_buffer) != 0 && comment_checker(l_buffer) == 1)
 		{
 			cmd = get_instruction(l_buffer);
 			if (cmd.opcode != NULL && cmd.f != NULL)
