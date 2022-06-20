@@ -6,6 +6,7 @@ void push_instruct(stack_t **stack, unsigned int line_number);
 void pall_instruct(stack_t **stack, unsigned int line_number);
 void pint_instruct(stack_t **stack, unsigned int line_number);
 void pop_instruct(stack_t **stack, unsigned int line_number);
+void swap_instruct(stack_t **stack, unsigned int line_number);
 
 
 /* definition of global variable */
@@ -20,6 +21,7 @@ abs_var monty_var = {
 		{"pall", pall_instruct},
 		{"pint", pint_instruct},
 		{"pop", pop_instruct},
+		{"swap", swap_instruct},
 		{NULL, NULL}
 	},
 	&stack_start,
