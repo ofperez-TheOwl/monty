@@ -57,3 +57,28 @@ void pint_instruct(stack_t **stack, unsigned int line_number)
 	tmp = traverse(*stack);
 	printf("%d\n", tmp->n);
 }
+
+/**
+ * pchar_instruct - print the char at the top of the stack
+ * @stack: double pointer to stack_t, stack
+ * @line_number: unsigned int; current line
+ *
+ * Return: nothing
+ * TheOwl
+ */
+void pchar_instruct(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (*stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	/* traversing before print the top of the stack */
+	tmp = traverse(*stack);
+	if (tmp->n >= 0 && tmp->n <= 127)
+		putchar(tmp->n);
+	dprintf(STDERR_FILENO, "L%d: can't pchar, value out of range\n", line_number);
+	exit(EXIT_FAILURE);
+}
