@@ -16,7 +16,7 @@ abs_var monty_var = {
 	0,
 	NULL,
 	NULL,
-       	NULL,
+	NULL,
 	{
 		{"push", push_instruct},
 		{"pall", pall_instruct},

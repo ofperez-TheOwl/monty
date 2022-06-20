@@ -39,6 +39,6 @@ int main(int argc, char **argv)
 		free(l_buffer);
 	}
 	free(monty_var.free_buffer);
-	free_dlistint(*monty_var.init_stack);
+	free_stack(*monty_var.init_stack);
 	return (EXIT_SUCCESS);
 }

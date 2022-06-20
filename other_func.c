@@ -39,13 +39,13 @@ void arg_checker(void)
 }
 
 /**
- * free_dlistint - frees all elements of a doubly linked list
+ * free_stack - frees all elements of a doubly linked list
  * @head: pointer to stack_t; first node of list
  *
  * Return: nothing
  * TheOwl
  */
-void free_dlistint(stack_t *head)
+void free_stack(stack_t *head)
 {
 	/* base case */
 	if (head == NULL)

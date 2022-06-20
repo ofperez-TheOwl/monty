@@ -64,7 +64,7 @@ typedef struct absolute_parameters
 	char *free_buffer;
 	instruction_t instruct[8];
 	stack_t **init_stack;
-}abs_var;
+} abs_var;
 
 extern abs_var monty_var;/* global variable */
 
@@ -75,8 +75,11 @@ int line_number(char *buffer);
 instruction_t get_instruction(char *l_buffer);
 
 /* other functions to optimize the program */
-void free_dlistint(stack_t *head); /* free a doubly linked list */
-void arg_checker(void);/* check if argument is a number */
-stack_t *traverse(stack_t *stack); /* traverse the doubly linked list */
+/* free a doubly linked list */
+void free_stack(stack_t *head);
+/* check if argument is a number */
+void arg_checker(void);
+/* traverse the doubly linked list */
+stack_t *traverse(stack_t *stack);
 
 #endif
