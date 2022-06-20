@@ -82,5 +82,6 @@ void free_stack(stack_t *head);
 void arg_checker(void);
 /* traverse the doubly linked list */
 stack_t *traverse(stack_t *stack);
+int _putchar(char c);
 
 #endif
