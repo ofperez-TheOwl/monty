@@ -24,6 +24,7 @@ abs_var monty_var = {
 		{"pop", pop_instruct},
 		{"swap", swap_instruct},
 		{"add", add_instruct},
+		{"nop", NULL},
 		{NULL, NULL}
 	},
 	&stack_start,

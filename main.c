@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 		if (strlen(l_buffer) != 0)
 		{
 			cmd = get_instruction(l_buffer);
-			if (cmd.opcode != NULL)
+			if (cmd.opcode != NULL && cmd.f != NULL)
 				cmd.f(monty_var.init_stack, monty_var.cur_line);
 		}
 		free(l_buffer);

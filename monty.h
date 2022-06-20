@@ -62,7 +62,7 @@ typedef struct absolute_parameters
 	char *cur_arg;
 	char *stand_buffer;
 	char *free_buffer;
-	instruction_t instruct[7];
+	instruction_t instruct[8];
 	stack_t **init_stack;
 }abs_var;
 
