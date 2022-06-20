@@ -15,8 +15,8 @@ void push_instruct(stack_t **stack, unsigned int line_number)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		free(new);
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		error_freeing();
 		exit(EXIT_FAILURE);
 	}
 	/* check if argument is a number */
@@ -24,6 +24,7 @@ void push_instruct(stack_t **stack, unsigned int line_number)
 	if (monty_var.cur_arg == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+		error_freeing();
 		exit(EXIT_FAILURE);
 	}
 	/* initialize new node */
@@ -58,6 +59,7 @@ void pop_instruct(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		error_freeing();
 		exit(EXIT_FAILURE);
 	}
 	/* if only one node */

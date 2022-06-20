@@ -48,7 +48,7 @@ char *ck_and_rd_file(int argc, char **argv)
 		return (NULL);
 	}
 	buffer[buf_size] = '\0';
-	monty_var.free_buffer = buffer;
+	monty_var.free_stand_buffer = buffer;
 	close(fd);
 	return (buffer);
 }
@@ -72,8 +72,8 @@ char *read_lines(char *buffer, int l_number)
 	l_buffer = malloc((i + 1) * sizeof(char));
 	if (l_buffer == NULL)
 	{
-		free(l_buffer);
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		error_freeing();
 		return (NULL);
 	}
 	/* copy line from stand_buffer to l_buffer */

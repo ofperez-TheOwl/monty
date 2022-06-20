@@ -69,13 +69,13 @@ void free_stack(stack_t *head)
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
+ * error_freeing - free memory in case of exit error
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: Nothing
+ * TheOwl
  */
-int _putchar(char c)
+void error_freeing(void)
 {
-	return (write(1, &c, 1));
+	free(monty_var.free_stand_buffer);
+	free_stack(*monty_var.init_stack);
 }

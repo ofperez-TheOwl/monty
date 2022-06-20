@@ -16,6 +16,7 @@ void swap_instruct(stack_t **stack, unsigned int line_number)
 	if ((*stack == NULL) || ((*stack)->next == NULL && (*stack)->prev == NULL))
 	{
 		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
+		error_freeing();
 		exit(EXIT_FAILURE);
 	}
 	tmp2 = traverse(*stack);

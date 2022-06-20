@@ -47,7 +47,7 @@ typedef struct instruction_s
  * @cur_line: int; index of current line in monty file
  * @cur_arg: pointer to char; current argument of opcode
  * @stand_buffer: pointer to char; mounty file content in wait
- * @free_buffer: pointer to char; reference for free
+ * @free_stand_buffer: pointer to char; reference to mounty file buffer
  * @instruct: double pointer to instruction_t; list of opcodes
  * with related C functions
  * @init_stack: double pointer to stack_t; stack or queue
@@ -61,7 +61,7 @@ typedef struct absolute_parameters
 	int cur_line;
 	char *cur_arg;
 	char *stand_buffer;
-	char *free_buffer;
+	char *free_stand_buffer;
 	instruction_t instruct[13];
 	stack_t **init_stack;
 } abs_var;
@@ -82,6 +82,7 @@ void free_stack(stack_t *head);
 void arg_checker(void);
 /* traverse the doubly linked list */
 stack_t *traverse(stack_t *stack);
-int _putchar(char c);
+/* free memory if exit error */
+void error_freeing(void);
 
 #endif

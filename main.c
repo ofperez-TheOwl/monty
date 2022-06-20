@@ -20,15 +20,16 @@ int main(int argc, char **argv)
 	/* read mounty file */
 	monty_var.stand_buffer = ck_and_rd_file(argc, argv);
 	if (monty_var.stand_buffer == NULL)
+	{
+		error_freeing();
 		return (EXIT_FAILURE);
+	}
 	/* get number of line */
 	l_number = line_number(monty_var.stand_buffer);
 	while (monty_var.cur_line < l_number)
 	{
 		/* read each line */
 		l_buffer = read_lines(monty_var.stand_buffer, l_number);
-		if (l_buffer == NULL)
-			return (EXIT_FAILURE);
 		/* identify and execute instructions */
 		if (strlen(l_buffer) != 0 && comment_checker(l_buffer) != 1)
 		{
@@ -38,7 +39,6 @@ int main(int argc, char **argv)
 		}
 		free(l_buffer);
 	}
-	free(monty_var.free_buffer);
-	free_stack(*monty_var.init_stack);
+	error_freeing();
 	return (EXIT_SUCCESS);
 }

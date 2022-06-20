@@ -45,6 +45,7 @@ void pint_instruct(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		error_freeing();
 		exit(EXIT_FAILURE);
 	}
 	/* if only one node */
@@ -73,13 +74,14 @@ void pchar_instruct(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't pchar, stack empty\n", line_number);
+		error_freeing();
 		exit(EXIT_FAILURE);
 	}
 	/* traversing before print the top of the stack */
 	tmp = traverse(*stack);
-	printf("traverse completed\n");
 	if (tmp->n >= 0 && tmp->n <= 127)
 		printf("%c\n", tmp->n);
 	dprintf(STDERR_FILENO, "L%d: can't pchar, value out of range\n", line_number);
+	error_freeing();
 	exit(EXIT_FAILURE);
 }
