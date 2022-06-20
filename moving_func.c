@@ -1,5 +1,14 @@
 #include "monty.h"
 
+/**
+ * swap_instruct - top stack element takes the place of second
+ * top stack element and vice verse
+ * @stack: double pointer to stack_t, stack
+ * @line_number: unsigned int; current line
+ *
+ * Return: Nothing
+ * TheOwl
+ */
 void swap_instruct(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp0, *tmp1, *tmp2;
