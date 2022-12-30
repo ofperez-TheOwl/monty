@@ -29,6 +29,7 @@ int main(int argc, char **argv)
 	while (monty_var.cur_line < l_number)
 	{
 		/* read each line */
+		printf("Line is : %d\n", monty_var.cur_line);
 		l_buffer = read_lines(monty_var.stand_buffer, l_number);
 		/* identify and execute instructions */
 		if (strlen(l_buffer) != 0 && comment_checker(l_buffer) != 1)
